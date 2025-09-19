@@ -19,7 +19,7 @@ async function getProducts(token: string) {
 export default async function ProductsPage() {
   // 1. No servidor, lemos o cookie de autenticação
   const cookieStore = cookies();
-  const authToken = cookieStore.get('authToken')?.value;
+  const authToken = (await cookieStore).get('authToken')?.value;
 
   // 2. Buscamos os dados iniciais dos produtos
   const initialProducts = authToken ? await getProducts(authToken) : [];
